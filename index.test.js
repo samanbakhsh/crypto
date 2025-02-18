@@ -1,5 +1,6 @@
 const Block = require('./index');
 const GENESIS_DATA = require('./config');
+const cryptoHash = require('./crypto-hash');
 
 describe("Block",()=>{
     const timeStamp = 'a-data';
@@ -44,5 +45,8 @@ describe("Block",()=>{
         it('checking existance of mineBlockData.timeStamp',()=>{
             expect(mineBlockData.timeStamp).not.toEqual(undefined);
         })
+        it('mineBlock.hash must be equal with cryptoFunction result with 3 parametrs',()=>{
+            expect(mineBlockData.hash).toEqual(cryptoHash(mineBlockData.timeStamp,mineBlockData.lastHash,mineBlockData.data)) 
+            })  
     })
 })
